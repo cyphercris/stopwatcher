@@ -72,7 +72,7 @@ ENABLE = False
 EXTRA_PORTAL_DB_NAME = 
 EXTRA_PORTAL_TABLE = 
 
-WEBHOOK_URL = 
+WEBHOOK_URL = [""]
 USERNAME = Portal Edit
 IMAGE = https://raw.githubusercontent.com/ccev/stopwatcher/master/icons/portal.png
 
