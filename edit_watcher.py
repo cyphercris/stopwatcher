@@ -1,7 +1,7 @@
 import time
 import requests
 import argparse
-
+import json
 from pymysql import connect
 
 try:
@@ -193,8 +193,11 @@ def send_webhook_location(config, db_portal_img, db_portal_name, db_portal_lat, 
             },
         }]
     }
-    result = requests.post(config['webhook'], json=data)
-    print(result)
+    webhook=config["webhook"]
+    webhooks = json.loads(webhook)
+    for webhook in webhooks:
+        result = requests.post(webhook, json=data)
+        print(result)
 
 def send_webhook_title(config, db_portal_img, db_portal_name, db_extra_name, db_portal_lat, db_portal_lon):
     embed_desc = (config['embed_from'] + " `" + db_extra_name + "`\n" + config['embed_to'] + " `" + db_portal_name + "`\n\n[Google Maps](https://www.google.com/maps/search/?api=1&query=" + str(db_portal_lat) + "," + str(db_portal_lon) + ") | [Intel](https://intel.ingress.com/intel?ll=" + str(db_portal_lat) + "," + str(db_portal_lon) + "&z=22&pll=" + str(db_portal_lat) + "," + str(db_portal_lon) + ")")
@@ -210,8 +213,12 @@ def send_webhook_title(config, db_portal_img, db_portal_name, db_extra_name, db_
             },
         }]
     }
-    result = requests.post(config['webhook'], json=data)
-    print(result)
+    webhook=config["webhook"]
+    webhooks = json.loads(webhook)
+    for webhook in webhooks:
+        result = requests.post(webhook, json=data)
+        print(result)
+   
 
 def send_webhook_image(config, db_portal_img, db_portal_name, db_extra_img, db_portal_lat, db_portal_lon):
     embed_desc = (config['embed_from'] + " [Link](" + db_extra_img + ")\n" + config['embed_to'] + " [Link](" + db_portal_img + ")\n\n[Google Maps](https://www.google.com/maps/search/?api=1&query=" + str(db_portal_lat) + "," + str(db_portal_lon) + ") | [Intel](https://intel.ingress.com/intel?ll=" + str(db_portal_lat) + "," + str(db_portal_lon) + "&z=22&pll=" + str(db_portal_lat) + "," + str(db_portal_lon) + ")")
@@ -227,8 +234,11 @@ def send_webhook_image(config, db_portal_img, db_portal_name, db_extra_img, db_p
             },
         }]
     }
-    result = requests.post(config['webhook'], json=data)
-    print(result)
+    webhook=config["webhook"];
+    webhooks = json.loads(webhook)
+    for webhook in webhooks:
+        result = requests.post(webhook, json=data)
+        print(result)
 
 def check_edits(config):
     query_extra_create = QUERY_CREATE_EXTRA.format(
